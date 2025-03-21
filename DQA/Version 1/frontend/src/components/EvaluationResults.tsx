@@ -206,12 +206,11 @@ const EvaluationResults: React.FC<EvaluationResultsProps> = ({
     statusBadge = <Badge className="bg-red-100 text-red-800"><AlertCircle className="h-3 w-3 mr-1" /> Failed</Badge>;
   }
 
-  // Helper function to get image URL
   const getImageUrl = (path: string) => {
-    // Remove "uploads/" from the beginning if present
-    const relativePath = path.replace(/^uploads\//, '');
+    // Handle cases where path might start with a slash
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path;
     // Construct the full URL
-    return `${baseUrl}/uploads/${relativePath}`;
+    return `${baseUrl}/${cleanPath}`;
   };
   
   return (
